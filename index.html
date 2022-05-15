@@ -16,25 +16,22 @@
 
 	</head>
 
-  <body>
+  <body onload="loadElements()">
 
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
       <div class="container">
-        <a class="navbar-brand" href="#">
-           <img src="src/assets/logo.png" width="50" height="35" alt="Orçamento pessoal">
-        </a>
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="http://127.0.0.1:5500/index.html">Cadastro</a>
+            <li class="nav-item active" onclick="directyRoutesRegister()">
+              <a class="nav-link" href="#">Cadastro</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="src/views/query.html">Consulta</a>
+            <li class="nav-item" onclick="directyRoutesQuery()">
+              <a class="nav-link" href="#">Consulta</a>
             </li>
           </ul>
           
@@ -46,43 +43,19 @@
 
       <div class="row mb-2">
         <div class="col-md-2">
-          <select class="form-control" id="ano">
-            <option value="">Ano</option>
-            <option value="2018">2018</option>
-          </select>
+          <select class="form-control" id="year"></select>
         </div>
 
         <div class="col-md-2">
-          <select class="form-control" id="mes">
-            <option value="">Mês</option>
-            <option value="1">Janeiro</option>
-            <option value="2">Fevereiro</option>
-            <option value="3">Março</option>
-            <option value="4">Abril</option>
-            <option value="5">Maio</option>
-            <option value="6">Junho</option>
-            <option value="7">Julho</option>
-            <option value="8">Agosto</option>
-            <option value="9">Setembro</option>
-            <option value="10">Outubro</option>
-            <option value="11">Novembro</option>
-            <option value="12">Dezembro</option>
-          </select>
+          <select class="form-control" id="mouth" onclick="checkLeapTear()""></select>
         </div>
         
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Dia" id="dia" />
+          <select class="form-control" id="day"></select>
         </div>
 
         <div class="col-md-6">
-          <select class="form-control" id="tipo">
-            <option>Tipo</option>
-            <option value="1">Alimentação</option>
-            <option value="2">Educação</option>
-            <option value="3">Lazer</option>
-            <option value="4">Saúde</option>
-            <option value="5">Transporte</option>
-          </select>
+          <select class="form-control" id="type"></select>
         </div>
       </div>
 
@@ -96,12 +69,15 @@
         </div>
 
         <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-dark">
             <i class="fas fa-plus"></i>
           </button>
         </div>
       </div>
     </div>
+
+    <script src="src/controller/routes.js"></script>
+    <script src="src/controller/loadElements.js"></script>
   </body>	
 
 </html>
