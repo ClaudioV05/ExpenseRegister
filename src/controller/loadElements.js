@@ -1,3 +1,5 @@
+var auxClass = 'form-control';
+
 var createDay = (d) => {
     let select = document.getElementById('day');
     let numdays = 31;
@@ -5,6 +7,7 @@ var createDay = (d) => {
     if (d != 0) {
         numdays = d;
         select.innerHTML = '';
+        
     }
 
     for (let i = 0; i <= numdays; i++) {
@@ -19,6 +22,7 @@ var createDay = (d) => {
         }
         select.appendChild(opt);
     }
+    select.className = auxClass;
 }
 
 var createYear = () => {
@@ -42,6 +46,7 @@ var createYear = () => {
         }
         select.appendChild(opt);
     }
+    select.className = auxClass;
 }
 
 var createMounth = () => {
@@ -63,6 +68,7 @@ var createMounth = () => {
 
         i = i + 1;
     });
+    select.className = auxClass;
 }
 
 var createActivity = () => {
@@ -84,6 +90,7 @@ var createActivity = () => {
 
         i = i + 1;
     });
+    select.className = auxClass;
 }
 
 function loadElements() {
