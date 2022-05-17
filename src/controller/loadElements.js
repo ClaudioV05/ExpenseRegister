@@ -1,13 +1,12 @@
 var auxClass = 'form-control';
 
 var createDay = (d) => {
-    let select = document.getElementById('day');
+    let elementDay = document.getElementById('day');
     let numdays = 31;
 
     if (d != 0) {
         numdays = d;
-        select.innerHTML = '';
-        
+        elementDay.innerHTML = '';
     }
 
     for (let i = 0; i <= numdays; i++) {
@@ -20,17 +19,16 @@ var createDay = (d) => {
             opt.value = i;
             opt.innerHTML = i;
         }
-        select.appendChild(opt);
+        elementDay.appendChild(opt);
     }
-    select.className = auxClass;
+    elementDay.setAttribute('class', auxClass);
 }
 
 var createYear = () => {
-    let select = document.getElementById('year');
+    let elementYear = document.getElementById('year');
     let firtsStep = false;
 
     let objData = new Date(), numyear = objData.getFullYear();
-
 
     for (let i = 2016; i <= numyear; i++) {
         // first step deprecated 2016
@@ -44,13 +42,13 @@ var createYear = () => {
             opt.value = i;
             opt.innerHTML = i;
         }
-        select.appendChild(opt);
+        elementYear.appendChild(opt);
     }
-    select.className = auxClass;
+    elementYear.setAttribute('class', auxClass);
 }
 
 var createMounth = () => {
-    let select = document.getElementById('mouth');
+    let elementMounth = document.getElementById('mouth');
     i = 0;
     const months = ["", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
@@ -64,15 +62,15 @@ var createMounth = () => {
             opt.value = i;
             opt.innerHTML = element;
         }
-        select.appendChild(opt);
+        elementMounth.appendChild(opt);
 
         i = i + 1;
     });
-    select.className = auxClass;
+    elementMounth.setAttribute('class', auxClass);
 }
 
 var createActivity = () => {
-    let select = document.getElementById('type');
+    let elementType = document.getElementById('type');
     let i = 0;
     const typeActivity = ["", "Alimentação", "Educação", "Lazer", "Saúde", "Transporte"];
 
@@ -86,11 +84,59 @@ var createActivity = () => {
             opt.value = i;
             opt.innerHTML = element;
         }
-        select.appendChild(opt);
+        elementType.appendChild(opt);
 
         i = i + 1;
     });
-    select.className = auxClass;
+    elementType.setAttribute('class', auxClass);
+}
+
+var createClassInput = () => {
+    let elementsInput = document.getElementsByTagName('input');
+    let aux = ['Descrição', 'Valor'];
+
+    for (let i = 0; i < elementsInput.length; i++) {
+        elementsInput[i].type = 'text';
+        elementsInput[i].placeholder = aux[i]
+        elementsInput[i].setAttribute('class', auxClass);        
+    }
+}
+
+var createClassTable = () => {
+    let aux = ['Data', 'Tipo', 'Descrição', 'Valor'];
+    let auxBody = ['1', '2', '3', '4'];
+
+    let table = document.createElement('table'),
+    thead = document.createElement('thead'),
+    tbody = document.createElement('tbody'),
+    tr = document.createElement('tr'),
+    trbody = document.createElement('tr');
+    
+    // creation head table.
+    table.setAttribute('class', 'table table-sm table-bordered');        
+    document.getElementById('tableQuery').appendChild(table);
+
+     table.appendChild(thead);
+     thead.appendChild(tr)
+
+    for (let i = 0; i < aux.length; i++) {
+        let th = document.createElement('th');
+        th.setAttribute('scope', 'col');        
+        th.innerHTML = aux[i];
+        tr.appendChild(th);
+    }
+    
+    // creation body table.
+    tbody.setAttribute('class', 'table-group-divider');        
+    table.appendChild(tbody);
+
+    tbody.appendChild(trbody);
+    
+    for (let i = 0; i < auxBody.length; i++) {
+        let td = document.createElement('td');
+        td.innerHTML = auxBody[i];
+        trbody.appendChild(td);
+    }
 }
 
 function loadElements() {
@@ -98,10 +144,11 @@ function loadElements() {
     createMounth();
     createActivity();
     createDay(0);
+    createClassInput();
+    createClassTable();
 }
 
 function checkLeapTear() {
-
     let objData = new Date();
 
     if ((document.getElementById("year").value == "''") && (document.getElementById("mouth").value == "''")) {
