@@ -24,7 +24,7 @@
 
 </head>
 
-<body onload="loadElements()">
+<body onload="loadFormatElements('pageRegister')">
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
     <div class="container">
@@ -35,10 +35,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active" onclick="routes('Register')">
-            <a class="nav-link" href="#">Cadastro</a>
-          </li>
-          <li class="nav-item" onclick="routes('Query')">
+          <li class="nav-item" id="routeQuery">
             <a class="nav-link" href="#">Consulta</a>
           </li>
         </ul>
@@ -64,29 +61,28 @@
       </div>
 
       <div class="col-md-6">
-        <select id="type"></select>
+        <select id="typeService"></select>
       </div>
 
     </div>
 
     <div class="row">
       <div class="col-md-8">
-        <input id="descricao" />
+        <input id="descriptionService"/>
       </div>
 
       <div class="col-md-2">
-        <input id="valor" />
+        <input id="valueService"/>
       </div>
 
       <div class="col-md-2 d-flex justify-content-end">
-        <button type="button" class="btn btn-dark" onclick="tested('b')"><i class="fas fa-plus"></i></button>
+        <button type="button" class="btn btn-dark" id="btnRegisterService"><i class="fas fa-plus"></i></button>
       </div>
     </div>
 
   </div>
 
-  <script src="src/controller/routes.js"></script>
-  <script src="src/controller/loadElements.js"></script>
+  <script type="module" src="src/Class_Service/controller/controller.app.js"></script>
 </body>
 
 </html>
