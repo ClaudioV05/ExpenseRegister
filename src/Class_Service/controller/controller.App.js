@@ -1,6 +1,6 @@
-import { routes } from "./routes.js";
+import { routes } from "./controller.Routes.js";
 import { controllerRegisterService, controllerListService } from "./controller.Service.js";
-import { loadElements, checkLeapTear } from "./utilsHtml.js";
+import { loadElements, checkLeapTear } from "./controller.UtilsHtml.js";
 
 // Mouse.
 const routeRegister = document.getElementById("routeRegister");
