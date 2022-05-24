@@ -1,0 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#deleteService {
+  background-color: rgb(215, 211, 211);
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#tableQuery {
+  background-color: rgb(255, 251, 251);
+  text-align: center;
+}
+
+th {
+  height: 50px;
+}

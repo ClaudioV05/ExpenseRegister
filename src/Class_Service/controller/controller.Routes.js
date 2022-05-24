@@ -1,15 +1,16 @@
-const aux = "http://127.0.0.1:5500/";
+import { home, section } from "../../utils/varGlobais.js";
 
- export function routes(directyRoutes) {
+export function routes(directyRoutes) {
+
     switch (directyRoutes) {
-        case "routeRegister":
-            window.location.href = `${aux}index.html`;
+        case "routeRegister": window.location.href = `${home + section}Register.html`;
             break;
-        case "routeQuery":
-            window.location.href = `${aux}src/Class_Service/views/query.html`;
+        case "routeQuery": window.location.href = `${home + section}Query.html`;
+            break;
+        case "routeOutSection": window.location.href = home;
             break;
         default:
             alert("Route not defined");
             break;
-    };
+    }
 }
