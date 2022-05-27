@@ -63,31 +63,22 @@
       </div>
     </div>
 
-    <div class="row  mb-5">
-      <div class="col-md-8">
-        <input id="descriptionService" />
+    <div class="row mb-5">
+
+      <div class="col-md-8"><input id="descriptionService" /></div>
+
+      <div class="col-md-2"><input id="valueService" /></div>
+
+      <div id="btnQuery">
+        <button type="button" class="btn btn-dark" id="btnSearch"><i class="fas fa-search" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-dark" id="btnRefresh"><i class="fas fa-sync"></i></i></button>
       </div>
 
-      <div class="col-md-2">
-        <input id="valueService" />
-      </div>
-
-      <div class="col-md-2 d-flex justify-content-end">
-        <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
-      </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <div id="tableQuery">
-        </div>
-      </div>
+    <div>
+      <div id="tableQuery"></div>
     </div>
-
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#target"> -->
-    <!-- La -->
-    <!-- </button> -->
 
     <!-- Modal -->
     <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -105,9 +96,9 @@
       </div>
     </div>
 
-  </div>
 
-  <script type="module" src="../controller/controller.App.Service.js"></script>
+
+    <script type="module" src="../controller/controller.App.Service.js"></script>
 </body>
 
 </html>

@@ -1,44 +1,49 @@
-var auxClass = "form-control";
+var listFilteredClass = "form-control";
 
-function setParamsDefaultDate() {
-    let aux = String,
-        date = new Date();
+function setParamsDefaultDate(_page = '') {
 
-    switch (date.getMonth() + 1) {
-        case 1: aux = "Janeiro";
-            break;
-        case 2: aux = "Fevereiro";
-            break;
-        case 3: aux = "Março";
-            break;
-        case 4: aux = "Abril";
-            break;
-        case 5: aux = "Maio";
-            break;
-        case 6: aux = "Junho";
-            break;
-        case 7: aux = "Julho";
-            break;
-        case 8: aux = "Agosto";
-            break;
-        case 9: aux = "Setembro";
-            break;
-        case 10: aux = "Outubro";
-            break;
-        case 11: aux = "Novembro";
-            break;
-        case 12: aux = "Dezembro";
-            break;
+    if (_page === "routeRegister") {
+
+        let listFiltered = String,
+            date = new Date();
+
+        switch (date.getMonth() + 1) {
+            case 1: listFiltered = "Janeiro";
+                break;
+            case 2: listFiltered = "Fevereiro";
+                break;
+            case 3: listFiltered = "Março";
+                break;
+            case 4: listFiltered = "Abril";
+                break;
+            case 5: listFiltered = "Maio";
+                break;
+            case 6: listFiltered = "Junho";
+                break;
+            case 7: listFiltered = "Julho";
+                break;
+            case 8: listFiltered = "Agosto";
+                break;
+            case 9: listFiltered = "Setembro";
+                break;
+            case 10: listFiltered = "Outubro";
+                break;
+            case 11: listFiltered = "Novembro";
+                break;
+            case 12: listFiltered = "Dezembro";
+                break;
+        }
+        document.getElementById("year").value = date.getFullYear();
+        document.getElementById("mouth").value = listFiltered;
+        document.getElementById("day").value = date.getDate();
     }
-
-    document.getElementById("year").value = date.getFullYear();
-    document.getElementById("mouth").value = aux;
-    document.getElementById("day").value = date.getDate();
 }
 
 var createDay = (d) => {
     let elementDay = document.getElementById("day"),
         numdays = Number = 31;
+    
+        elementDay.innerHTML = '';
 
     if (d != 0) {
         numdays = d;
@@ -57,7 +62,7 @@ var createDay = (d) => {
         }
         elementDay.appendChild(option);
     }
-    elementDay.setAttribute("class", auxClass);
+    elementDay.setAttribute("class", listFilteredClass);
 }
 
 var createYear = () => {
@@ -65,6 +70,8 @@ var createYear = () => {
     let firtsStep = false;
 
     let objData = new Date(), numyear = objData.getFullYear();
+
+    elementYear.innerHTML = '';
 
     for (let i = 2016; i <= numyear; i++) {
         // first step deprecated 2016
@@ -80,13 +87,15 @@ var createYear = () => {
         }
         elementYear.appendChild(option);
     }
-    elementYear.setAttribute("class", auxClass);
+    elementYear.setAttribute("class", listFilteredClass);
 }
 
 var createMounth = () => {
     let elementMounth = document.getElementById("mouth"),
         i = Number = 0;
     const months = ["", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+    elementMounth.innerHTML = '';
 
     months.forEach(element => {
         let option = document.createElement("option");
@@ -102,13 +111,15 @@ var createMounth = () => {
 
         i += 1;
     });
-    elementMounth.setAttribute("class", auxClass);
+    elementMounth.setAttribute("class", listFilteredClass);
 }
 
 var createActivity = () => {
-    let elementType = document.getElementById("typeService");
+    let elementTypeService = document.getElementById("typeService");
     let i = 0;
     const typeActivity = ["", "Alimentação", "Educação", "Lazer", "Saúde", "Transporte"];
+
+    elementTypeService.innerHTML = '';
 
     typeActivity.forEach(element => {
         let option = document.createElement("option");
@@ -120,35 +131,36 @@ var createActivity = () => {
             option.value = element;
             option.innerHTML = element;
         }
-        elementType.appendChild(option);
+        elementTypeService.appendChild(option);
 
         i += 1;
     });
-    elementType.setAttribute("class", auxClass);
+    elementTypeService.setAttribute("class", listFilteredClass);
 }
 
 var createClassInput = () => {
     let elementsInput = document.querySelectorAll("input");
-    let aux = ["Descrição", "Valor"];
+    let listFiltered = ["Descrição", "Valor"];
 
     for (let i = 0; i < elementsInput.length; i++) {
         elementsInput[i].type = "text";
-        elementsInput[i].placeholder = aux[i];
-        elementsInput[i].setAttribute("class", auxClass);
+        elementsInput[i].placeholder = listFiltered[i];
+        elementsInput[i].setAttribute("class", listFilteredClass);
     }
 }
 
-var createClassTable = (page, listService) => {
+var createClassTable = (_page, _listService, _filter, _searchList) => {
 
-    if (page === "routeQuery") {
+    if (_page === "routeQuery") {
 
+        // clear grid
         document.getElementById("tableQuery").innerHTML = '';
 
-        if ((listService.length !== 0) && (listService !== null)) {
+        if ((_listService.length !== 0) && (_listService !== null)) {
             let table = document.createElement("table"),
                 thead = document.createElement("thead"),
                 tableRow = document.createElement("tr"),
-                aux = ["Código", "Data", "Tipo", "Descrição", "Valor"];
+                listFiltered = ["Código", "Data", "Tipo", "Descrição", "Valor"];
 
             table.appendChild(thead);
             table.setAttribute("class", "table table-sm table-bordered");
@@ -160,7 +172,7 @@ var createClassTable = (page, listService) => {
             let itemElement = Number;
             itemElement = - 1;
 
-            aux.forEach(element => {
+            listFiltered.forEach(element => {
                 let th = document.createElement("th");
 
                 itemElement = itemElement + 1;
@@ -173,43 +185,80 @@ var createClassTable = (page, listService) => {
                 thead.appendChild(tableRow);
             });
 
-            listService.forEach(element => {
-                // create button for id.
-                let btnDelete = document.createElement("button");
+            if (_filter) {
 
-                btnDelete.setAttribute("id", "deleteService");
-                btnDelete.setAttribute("value", element.code);
-                btnDelete.innerHTML = '<i class="fas fa-trash"></i>';
-                btnDelete.onclick = () => elementShowModal(true, element.code);
+                let listFiltered = [];
 
-                let lineTable = table.insertRow();
-                lineTable.insertCell(0).innerHTML = element.code;
-                lineTable.insertCell(1).innerHTML = `${element.day}/${element.mounth}/${element.year}`;
-                lineTable.insertCell(2).innerHTML = element.tipeService;
-                lineTable.insertCell(3).innerHTML = element.descriptionService;
-                lineTable.insertCell(4).innerHTML = element.valueService;
-                lineTable.insertCell(5).appendChild(btnDelete);
-            });
+                listFiltered = _listService.filter(element => {
+
+                    if ((element.year == _searchList.year) && (_searchList.year !== undefined)) {
+                        return element
+                    }
+
+                    if ((element.mouth == _searchList.mouth) && (_searchList.mouth !== undefined)) {
+                        return element
+                    }
+
+                    if ((element.day == _searchList.day) && (_searchList.day !== undefined)) {
+                        return element
+                    }
+
+                    if ((element.typeService == _searchList.typeService) && (_searchList.typeService !== undefined)) {
+                        return element
+                    }
+
+                    if ((element.descriptionService == _searchList.descriptionService) && (_searchList.descriptionService !== undefined)) {
+                        return element
+                    }
+
+                    if ((element.valueService == _searchList.valueService) && (_searchList.valueService !== undefined)) {
+                        return element
+                    }
+                
+                });
+
+                listFiltered.forEach(element => loadComponents(table, element));
+            } else {
+                _listService.forEach(element => loadComponents(table, element));
+            }
         }
     }
 }
 
-export function loadElements(page, listService) {
+let loadComponents = (obtTable, objElement) => {
+    // create button for id.
+    let btnDelete = document.createElement("button");
+
+    btnDelete.setAttribute("id", "deleteService");
+    btnDelete.setAttribute("value", objElement.code);
+    btnDelete.innerHTML = '<i class="fas fa-trash"></i>';
+    btnDelete.onclick = () => modalDelete(true, objElement.code);
+
+    let lineTable = obtTable.insertRow();
+    lineTable.insertCell(0).innerHTML = objElement.code;
+    lineTable.insertCell(1).innerHTML = `${objElement.day}/${objElement.mounth}/${objElement.year}`;
+    lineTable.insertCell(2).innerHTML = objElement.typeService;
+    lineTable.insertCell(3).innerHTML = objElement.descriptionService;
+    lineTable.insertCell(4).innerHTML = objElement.valueService;
+    lineTable.insertCell(5).appendChild(btnDelete);
+}
+
+export function loadElements(_page, _listService, _filter, _searchList) {
     createYear();
     createMounth();
     createActivity();
     createDay(0);
     createClassInput();
-    createClassTable(page, listService);
-    setParamsDefaultDate();
+    createClassTable(_page, _listService, _filter, _searchList);
+    setParamsDefaultDate(_page);
 }
 
-export function elementShowModal(elementEnabled = true, serviceCode) {
+export function modalDelete(elementEnabled = true, serviceCode) {
+
     let viewModal = document.getElementById("viewModal"),
         viewModalLabel = document.getElementById("viewModalBody");
 
     if (elementEnabled) {
-        viewModalLabel.innerHTML = "Confirma a exclusão do serviço!";
         viewModal.setAttribute("class", "modal fade show");
         viewModal.setAttribute("style", "display: block");
         viewModalLabel.innerHTML = `Código do serviço: ${serviceCode}`;
@@ -222,8 +271,21 @@ export function elementShowModal(elementEnabled = true, serviceCode) {
     }
 }
 
+export function modalRegister() {
+    let alert = document.getElementById("alert");
+
+    alert.setAttribute("class", "alert alert-dark");
+    alert.setAttribute("role", "alert");
+    alert.innerHTML = "Campos obrigatórios!"
+    alert.style.display = 'block';
+
+    let displayNone = () => alert.style.display = 'none';
+
+    setTimeout(displayNone, 2000);
+}
+
 export function checkLeapTear() {
-    let objData = new Date(), aux = Number;
+    let objData = new Date(), listFiltered = Number;
 
     if ((document.getElementById("year").value == "''") && (document.getElementById("mouth").value == "''")) {
         let numyear = objData.getFullYear(),
@@ -235,38 +297,36 @@ export function checkLeapTear() {
 
         // result based on Leap year.
         switch (document.getElementById("mouth").value) {
-            case "Janeiro": aux = 1;
+            case "Janeiro": listFiltered = 1;
                 break;
-            case "Fevereiro": aux = 2;
+            case "Fevereiro": listFiltered = 2;
                 break;
-            case "Março": aux = 3;
+            case "Março": listFiltered = 3;
                 break;
-            case "Abril": aux = 4;
+            case "Abril": listFiltered = 4;
                 break;
-            case "Maio": aux = 5;
+            case "Maio": listFiltered = 5;
                 break;
-            case "Junho": aux = 6;
+            case "Junho": listFiltered = 6;
                 break;
-            case "Julho": aux = 7;
+            case "Julho": listFiltered = 7;
                 break;
-            case "Agosto": aux = 8;
+            case "Agosto": listFiltered = 8;
                 break;
-            case "Setembro": aux = 9;
+            case "Setembro": listFiltered = 9;
                 break;
-            case "Outubro": aux = 10;
+            case "Outubro": listFiltered = 10;
                 break;
-            case "Novembro": aux = 11;
+            case "Novembro": listFiltered = 11;
                 break;
-            case "Dezembro": aux = 12;
+            case "Dezembro": listFiltered = 12;
                 break;
         }
 
         let numyear = parseInt(document.getElementById("year").value),
-            numMounth = aux,
+            numMounth = listFiltered,
             qtdDay = new Date(numyear, numMounth, 0).getDate();
 
         createDay(qtdDay)
     }
 }
-
-// NORDESTEBOI.COM.BR/TRABALHE-CONOSCO

@@ -1,11 +1,11 @@
 import { daoRegisterService, daoListService, daoDeleteService} from "../dao/dao.Service.js";
 
 class Service {
-    constructor(_year, _mounth, _day, _tipeService, _descriptionService, _valueService, _code) {
+    constructor(_year, _mounth, _day, _typeService, _descriptionService, _valueService, _code) {
         this.year = _year;
         this.mounth = _mounth;
         this.day = _day;
-        this.tipeService = _tipeService;
+        this.typeService = _typeService;
         this.descriptionService = _descriptionService;
         this.valueService = _valueService;
         this.code = _code;

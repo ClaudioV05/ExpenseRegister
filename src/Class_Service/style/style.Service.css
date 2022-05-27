@@ -20,3 +20,14 @@
 th {
   height: 50px;
 }
+
+#displayAlert {
+  border: 30px solid white;
+  font-size: 20;
+  font-style: normal;
+}
+
+#btnQuery {
+  display: grid;
+  grid-auto-rows: fr 1 fr;
+}
