@@ -156,7 +156,7 @@ var createClassTable = (_page, _listService, _filter, _searchList) => {
         // clear grid
         document.getElementById("tableQuery").innerHTML = '';
 
-        if ((_listService.length !== 0) && (_listService !== null)) {
+        if ((_listService.length == 0) && (_listService !== null)) {
             let table = document.createElement("table"),
                 thead = document.createElement("thead"),
                 tableRow = document.createElement("tr"),

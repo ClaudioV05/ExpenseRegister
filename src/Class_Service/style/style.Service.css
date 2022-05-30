@@ -27,7 +27,16 @@ th {
   font-style: normal;
 }
 
-#btnQuery {
-  display: grid;
-  grid-auto-rows: fr 1 fr;
+#containerBtnQuerySearch {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  background-color: aquamarine;
+  width: 50px;
+  border-left: 20px;
+}
+
+#boxBtn {
+  background-color: blueviolet;
 }
