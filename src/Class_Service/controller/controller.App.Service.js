@@ -95,7 +95,6 @@ function validateService(service) {
             p = false
         }
     });
-
     return p;
 }
 
@@ -159,7 +158,7 @@ if (btnRefresh !== null) {
 }
 
 async function loadFormatElements(page, filter, searchList) {
-    
+
     try {
         const auxListService = await list();
         await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, searchList));
