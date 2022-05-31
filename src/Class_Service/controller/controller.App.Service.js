@@ -1,11 +1,23 @@
 import { emailSocial, nameSocial } from "../../utils/varGlobais.js";
+// #
+const route = document.querySelector("#route");
+const routeOut = document.querySelector("#routeOut");
+const selectMounth = document.querySelector("#mouth");
+const btnRegisterService = document.querySelector("#btnRegisterService");
+const btnViewModalCancel = document.querySelector("#viewModalCancel");
+const btnViewModalConfirm = document.querySelector("#viewModalConfirm");
 
-const route = document.getElementById("route");
-const routeOut = document.getElementById("routeOut");
-const selectMounth = document.getElementById("mouth");
-const btnRegisterService = document.getElementById("btnRegisterService");
-const btnViewModalCancel = document.getElementById("viewModalCancel");
-const btnViewModalConfirm = document.getElementById("viewModalConfirm");
+// delete before refactoring
+// const route = document.getElementById("route");
+// const routeOut = document.getElementById("routeOut");
+// const selectMounth = document.getElementById("mouth");
+// const btnRegisterService = document.getElementById("btnRegisterService");
+// const btnViewModalCancel = document.getElementById("viewModalCancel");
+// const btnViewModalConfirm = document.getElementById("viewModalConfirm");
+
+
+
+
 const btnSearch = document.getElementById("btnSearch");
 const btnRefresh = document.getElementById("btnRefresh");
 
@@ -131,20 +143,19 @@ document.addEventListener("keydown", (e) => {
 });
 
 if (btnViewModalConfirm !== null) {
-    btnViewModalConfirm.addEventListener("click", () => deleteService());
-}
+    btnViewModalConfirm.addEventListener("click", () => {
 
-export function deleteService() {
+        let serviceCode = document.getElementById("viewModalBody"), service = String;
+        service = serviceCode.innerHTML;
+        // make value in number;
+        service = +service.substring(18);
 
-    let serviceCode = document.getElementById("viewModalBody"), service = String;
-    service = serviceCode.innerHTML;
-    // make value in number;
-    service = +service.substring(18);
+        if (delService(service)) {
+            loadFormatElements("routeQuery", false, []);
+            modalDeleteService(false);
+        }
 
-    if (delService(service)) {
-        loadFormatElements("routeQuery", false, []);
-        modalDeleteService(false);
-    }
+    });
 }
 
 routeOut.addEventListener("click", () => indicateRoute("routeOutSection"));
@@ -182,7 +193,7 @@ async function list() {
 }
 
 async function delService(serviceCode = '') {
-    await import("./controller.Service.js").then(module => module.modalRegister(serviceCode));
+    await import("./controller.Service.js").then(module => module.controllerDeleteService(serviceCode));
 }
 
 async function modalRegisterService() {
