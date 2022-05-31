@@ -164,12 +164,11 @@ async function loadFormatElements(page, filter, searchList, refreshElements) {
     try {
         const auxListService = await list();
 
-        await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, []));
 
-        if (filter) {
-            // await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, filter, searchList, filter));
+        if (!filter) {
+            await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, []));
         } else {
-            // await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, filter, searchList, filter, aux));
+            await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, searchList));
         }
 
     } catch (error) {
