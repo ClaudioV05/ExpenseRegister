@@ -23,9 +23,7 @@ switch (route.value) {
 
 routeOut.addEventListener("click", () => indicateRoute("routeOutSection"));
 
-selectMounth.addEventListener("click", async () => {
-    await import("./controller.UtilsHtml.js").then(module => module.checkLeapTear());
-})
+selectMounth.addEventListener("click", async () => await import("./controller.UtilsHtml.js").then(module => module.checkLeapTear()));
 
 
 if (btnRegisterService !== null) {
@@ -125,9 +123,9 @@ if (btnViewModalCancel !== null) {
     btnViewModalCancel.addEventListener("click", () => modalDeleteService(false));
 }
 
-document.addEventListener("keydown", (event) => {
+document.addEventListener("keydown", (e) => {
 
-    if (event.key === "Escape") {
+    if (e.key === "Escape") {
         modalDeleteService(false);
         loadFormatElements("routeQuery", false, []);
     }
@@ -145,7 +143,7 @@ export function deleteService() {
     service = +service.substring(18);
 
     if (delService(service)) {
-        loadFormatElements("routeQuery", false, [], false);
+        loadFormatElements("routeQuery", false, []);
         modalDeleteService(false);
     }
 }
@@ -153,23 +151,18 @@ export function deleteService() {
 routeOut.addEventListener("click", () => indicateRoute("routeOutSection"));
 
 if (btnSearch !== null) {
-    btnSearch.addEventListener("click", () => loadFormatElements("routeQuery", true, loadService("filter"), false));
+    btnSearch.addEventListener("click", () => loadFormatElements("routeQuery", true, loadService("filter")));
 }
 
 if (btnRefresh !== null) {
-    btnRefresh.addEventListener("click", () => loadFormatElements("routeQuery", false, [], true));
+    btnRefresh.addEventListener("click", () => loadFormatElements("routeQuery", false, []));
 }
 
-async function loadFormatElements(page, filter, searchList, refreshElements) {
+async function loadFormatElements(page, filter, searchList) {
+    
     try {
         const auxListService = await list();
-
-
-        if (!filter) {
-            await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, []));
-        } else {
-            await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, searchList));
-        }
+        await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, searchList));
 
     } catch (error) {
         alert(` Entre em contato com o suporte da ${nameSocial} \n email: ${emailSocial}

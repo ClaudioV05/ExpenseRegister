@@ -189,31 +189,30 @@ var createClassTable = (_page, _listService, _filter, _searchList) => {
             if (_filter) {
 
                 let listFiltered = [];
-
                 listFiltered = _listService.filter(element => {
 
                     if ((element.year == _searchList.year) && (_searchList.year !== undefined)) {
-                        return element
+                        return element;
                     }
 
                     if ((element.mouth == _searchList.mouth) && (_searchList.mouth !== undefined)) {
-                        return element
+                        return element;
                     }
 
                     if ((element.day == _searchList.day) && (_searchList.day !== undefined)) {
-                        return element
+                        return element;
                     }
 
                     if ((element.typeService == _searchList.typeService) && (_searchList.typeService !== undefined)) {
-                        return element
+                        return element;
                     }
 
                     if ((element.descriptionService == _searchList.descriptionService) && (_searchList.descriptionService !== undefined)) {
-                        return element
+                        return element;
                     }
 
                     if ((element.valueService == _searchList.valueService) && (_searchList.valueService !== undefined)) {
-                        return element
+                        return element;
                     }
                 
                 });
