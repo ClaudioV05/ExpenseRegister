@@ -1,5 +1,5 @@
 import { emailSocial, nameSocial } from "../../utils/varGlobais.js";
-// #
+
 const route = document.querySelector("#route");
 const routeOut = document.querySelector("#routeOut");
 const selectMounth = document.querySelector("#mouth");
@@ -23,7 +23,7 @@ switch (route.value) {
 
 routeOut.addEventListener("click", () => indicateRoute("routeOutSection"));
 
-selectMounth.addEventListener("click", async () => await import("./controller.UtilsHtml.js").then(module => module.checkLeapTear()));
+selectMounth.addEventListener("onchange", async () => await import("./controller.UtilsHtml.js").then(module => module.checkLeapTear()));
 
 
 if (btnRegisterService !== null) {
