@@ -6,20 +6,8 @@ const selectMounth = document.querySelector("#mouth");
 const btnRegisterService = document.querySelector("#btnRegisterService");
 const btnViewModalCancel = document.querySelector("#viewModalCancel");
 const btnViewModalConfirm = document.querySelector("#viewModalConfirm");
-
-// delete before refactoring
-// const route = document.getElementById("route");
-// const routeOut = document.getElementById("routeOut");
-// const selectMounth = document.getElementById("mouth");
-// const btnRegisterService = document.getElementById("btnRegisterService");
-// const btnViewModalCancel = document.getElementById("viewModalCancel");
-// const btnViewModalConfirm = document.getElementById("viewModalConfirm");
-
-
-
-
-const btnSearch = document.getElementById("btnSearch");
-const btnRefresh = document.getElementById("btnRefresh");
+const btnSearch = document.querySelector("#btnSearch");
+const btnRefresh = document.querySelector("#btnRefresh");
 
 switch (route.value) {
     case 1:
