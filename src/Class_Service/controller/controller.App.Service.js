@@ -162,13 +162,9 @@ if (btnRefresh !== null) {
 
 async function loadFormatElements(page, filter, searchList, refreshElements) {
     try {
+        const auxListService = await list();
 
-        let aux = [];
-        list().then(elements => elements.forEach(e => aux.push(e)));
-
-        console.log(aux)
-
-        await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, aux, filter, []));
+        await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, auxListService, filter, []));
 
         if (filter) {
             // await import("./controller.UtilsHtml.js").then((module) => module.loadElements(page, filter, searchList, filter));
