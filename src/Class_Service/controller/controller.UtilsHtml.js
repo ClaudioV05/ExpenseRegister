@@ -1,4 +1,4 @@
-var listFilteredClass = "form-control";
+const listFilteredClass = "form-control";
 
 function setParamsDefaultDate(_page = '') {
 
@@ -39,7 +39,7 @@ function setParamsDefaultDate(_page = '') {
     }
 }
 
-var createDay = (d) => {
+const createDay = (d) => {
     let elementDay = document.getElementById("day"),
         numdays = Number = 31;
     
@@ -65,7 +65,7 @@ var createDay = (d) => {
     elementDay.setAttribute("class", listFilteredClass);
 }
 
-var createYear = () => {
+const createYear = () => {
     let elementYear = document.getElementById("year");
     let firtsStep = false;
 
@@ -90,7 +90,7 @@ var createYear = () => {
     elementYear.setAttribute("class", listFilteredClass);
 }
 
-var createMounth = () => {
+const createMounth = () => {
     let elementMounth = document.getElementById("mouth"),
         i = Number = 0;
     const months = ["", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
@@ -114,7 +114,7 @@ var createMounth = () => {
     elementMounth.setAttribute("class", listFilteredClass);
 }
 
-var createActivity = () => {
+const createActivity = () => {
     let elementTypeService = document.getElementById("typeService");
     let i = 0;
     const typeActivity = ["", "Alimentação", "Educação", "Lazer", "Saúde", "Transporte"];
@@ -138,7 +138,7 @@ var createActivity = () => {
     elementTypeService.setAttribute("class", listFilteredClass);
 }
 
-var createClassInput = () => {
+const createClassInput = () => {
     let elementsInput = document.querySelectorAll("input");
     let listFiltered = ["Descrição", "Valor"];
 
@@ -149,7 +149,7 @@ var createClassInput = () => {
     }
 }
 
-var createClassTable = (_page, _listService, _filter, _searchList) => {
+const createClassTable = (_page, _listService, _filter, _searchList) => {
 
     if (_page === "routeQuery") {
 
